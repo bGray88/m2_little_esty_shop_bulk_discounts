@@ -20,10 +20,10 @@ class Merchant < ApplicationRecord
   end
 
   def ordered_items_to_ship
-    item_ids = InvoiceItem.where("status = 0 OR status = 1").order(:created_at).pluck(:item_id)
-    item_ids.map do |id|
-      Item.find(id)
-    end
+    Item.joins(:invoice_items)
+        .select('items.*, invoice_items.status, invoice_items.created_at')
+        .where('invoice_items.status != 2')
+        .order('invoice_items.created_at')
   end
 
   def top_5_items

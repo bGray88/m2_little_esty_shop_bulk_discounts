@@ -3,7 +3,7 @@ class BulkDiscountsController < ApplicationController
   before_action :find_merchant, only: [:index]
 
   def index
-    @discounts = BulkDiscount.find_by(merchant_id: @merchant)
+    @bulk_discounts = BulkDiscount.where(merchant_id: @merchant)
   end
 
   def find_discount_and_merchant

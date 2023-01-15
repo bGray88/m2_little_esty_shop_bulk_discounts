@@ -1,1 +1,11 @@
 <h1><%= @merchant.name %> Discounts</h1>
+
+<% if @bulk_discounts.any? %>
+  <% @bulk_discounts.each do |discount| %>
+    <div id=<%= "merchant-discount-#{discount.id}" %> >
+      <%= "ID: #{discount.id}" %>
+      <%= "Discount: #{discount.discount}%" %>
+      <%= "Threshold: #{discount.threshold} Items" %>
+    </div>
+  <% end %>
+<% end %>

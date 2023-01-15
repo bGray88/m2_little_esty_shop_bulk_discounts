@@ -7,10 +7,10 @@ describe Merchant do
   describe "relationships" do
     it { should have_many :items }
     it { should have_many(:invoice_items).through(:items) }
-    it {should have_many(:invoices).through(:invoice_items)}
+    it { should have_many(:invoices).through(:invoice_items)}
     it { should have_many(:customers).through(:invoices) }
     it { should have_many(:transactions).through(:invoices) }
-
+    it { should have_many(:bulk_discounts)}
   end
 
   describe "class methods" do
@@ -78,7 +78,6 @@ describe Merchant do
       @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_7.id)
       @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_8.id)
       @transaction8 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_9.id)
-
     end
 
     it 'top_merchants' do
@@ -141,7 +140,7 @@ describe Merchant do
 
     end
     it "can list items ready to ship" do
-      expect(@merchant1.ordered_items_to_ship).to eq([@item_1, @item_1, @item_3, @item_4, @item_7, @item_8, @item_4, @item_4])
+      expect(@merchant1.ordered_items_to_ship.to_a).to eq([@item_1, @item_1, @item_3, @item_4, @item_7, @item_8, @item_4, @item_4])
     end
 
     it "shows a list of favorite customers" do

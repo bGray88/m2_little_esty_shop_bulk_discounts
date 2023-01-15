@@ -40,6 +40,12 @@ RSpec.describe 'merchant dashboard' do
     @transaction6 = Transaction.create!(credit_card_number: 879799, result: 1, invoice_id: @invoice_7.id)
     @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_2.id)
 
+    @bulk_discount_1 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_2 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_3 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_4 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_5 = create(:bulk_discount, merchant: @merchant1)
+
     visit merchant_dashboard_index_path(@merchant1)
   end
 
@@ -93,6 +99,7 @@ RSpec.describe 'merchant dashboard' do
     expect(page).to have_no_content(@customer_6.first_name)
     expect(page).to have_no_content(@customer_6.last_name)
   end
+
   it "can see a section for Items Ready to Ship with list of names of items ordered and ids" do
     within("#items_ready_to_ship") do
 
@@ -118,5 +125,13 @@ RSpec.describe 'merchant dashboard' do
 
   it "shows the date that the invoice was created in this format: Monday, July 18, 2019" do
     expect(page).to have_content(@invoice_1.created_at.strftime("%A, %B %-d, %Y"))
+  end
+
+  it 'shows a link to view all discounts' do
+    expect(page).to have_link("Items")
+
+    click_link "Discounts"
+
+    expect(current_path).to eq("/merchant/#{@merchant1.id}/bulk_discounts")
   end
 end

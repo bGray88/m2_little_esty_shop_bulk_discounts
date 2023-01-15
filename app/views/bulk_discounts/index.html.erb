@@ -3,7 +3,8 @@
 <% if @bulk_discounts.any? %>
   <% @bulk_discounts.each do |discount| %>
     <div id=<%= "merchant-discount-#{discount.id}" %> >
-      <%= "ID: #{discount.id}" %>
+      <%= label "#{discount.id}", "Id:" %>
+      <%= link_to "#{discount.id}", merchant_bulk_discount_path(@merchant, discount) %>
       <%= "Discount: #{discount.discount}%" %>
       <%= "Threshold: #{discount.threshold} Items" %>
     </div>

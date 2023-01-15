@@ -56,17 +56,17 @@ RSpec.describe 'merchant discount index' do
         expect(page).to_not have_content("ID: #{@bulk_discount_4.id}")
 
         within("#merchant-discount-#{@bulk_discount_1.id}") do
-          expect(page).to have_content("ID: #{@bulk_discount_1.id}")
+          expect(page).to have_content("Id: #{@bulk_discount_1.id}")
           expect(page).to have_content("Discount: #{@bulk_discount_1.discount}%")
           expect(page).to have_content("Threshold: #{@bulk_discount_1.threshold} Items")
         end
         within("#merchant-discount-#{@bulk_discount_2.id}") do
-          expect(page).to have_content("ID: #{@bulk_discount_2.id}")
+          expect(page).to have_content("Id: #{@bulk_discount_2.id}")
           expect(page).to have_content("Discount: #{@bulk_discount_2.discount}%")
           expect(page).to have_content("Threshold: #{@bulk_discount_2.threshold} Items")
         end
         within("#merchant-discount-#{@bulk_discount_3.id}") do
-          expect(page).to have_content("ID: #{@bulk_discount_3.id}")
+          expect(page).to have_content("Id: #{@bulk_discount_3.id}")
           expect(page).to have_content("Discount: #{@bulk_discount_3.discount}%")
           expect(page).to have_content("Threshold: #{@bulk_discount_3.threshold} Items")
         end
@@ -77,7 +77,7 @@ RSpec.describe 'merchant discount index' do
           click_on("#{@bulk_discount_1.id}")
         end
 
-        expect(current_path).to eq(bulk_discount_path(@bulk_discount_1))
+        expect(current_path).to eq(merchant_bulk_discount_path(@merchant1, @bulk_discount_1))
       end
     end
   end

@@ -6,6 +6,9 @@ class BulkDiscountsController < ApplicationController
     @bulk_discounts = BulkDiscount.where(merchant_id: @merchant)
   end
 
+  def show
+  end
+
   def find_discount_and_merchant
     @invoice = BulkDiscount.find(params[:id])
     @merchant = Merchant.find(params[:merchant_id])

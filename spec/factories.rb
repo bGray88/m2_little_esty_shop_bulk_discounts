@@ -34,4 +34,9 @@ FactoryBot.define do
     merchant
     invoice
   end
+
+  factory :bulk_discount do
+    discount {[10,20,30,40].sample}
+    threshold {[5,10,15,20].sample}
+  end
 end

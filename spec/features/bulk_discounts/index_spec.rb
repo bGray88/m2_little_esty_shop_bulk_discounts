@@ -53,7 +53,7 @@ RSpec.describe 'merchant discount index' do
   describe 'As a merchant' do
     describe 'to to their bulk discount index' do
       it 'Lists all their discounts: percentage discount & quantity threshold' do
-        expect(page).to_not have_content("ID: #{@bulk_discount_4.id}")
+        expect(page).to_not have_content("Id: #{@bulk_discount_4.id}")
 
         within("#merchant-discount-#{@bulk_discount_1.id}") do
           expect(page).to have_content("Id: #{@bulk_discount_1.id}")
@@ -114,7 +114,7 @@ RSpec.describe 'merchant discount index' do
 
           expect(current_path).to eq(merchant_bulk_discounts_path(@merchant1))
 
-          expect(page).to_not have_content("ID: #{@bulk_discount_1.id}")
+          expect(page).to_not have_content("Id: #{@bulk_discount_1.id}")
         end
       end
     end

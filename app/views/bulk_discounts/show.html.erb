@@ -2,3 +2,4 @@
 
 <%= "Discount: #{@bulk_discount.discount}%" %>
 <%= "Threshold: #{@bulk_discount.threshold} Items" %>
+<%= link_to "Edit", edit_merchant_bulk_discount_path(@merchant, @bulk_discount) %>

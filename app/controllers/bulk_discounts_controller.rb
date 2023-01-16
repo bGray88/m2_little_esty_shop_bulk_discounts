@@ -1,6 +1,6 @@
 class BulkDiscountsController < ApplicationController
-  before_action :find_discount_and_merchant, only: [:show, :update, :destroy]
-  before_action :find_merchant, only: [:index]
+  before_action :find_discount_and_merchant, only: [:edit, :show, :update, :destroy]
+  before_action :find_merchant, only: [:new, :index]
 
   def index
     @bulk_discounts = BulkDiscount.where(merchant_id: @merchant)
@@ -20,6 +20,15 @@ class BulkDiscountsController < ApplicationController
       flash[:notice] = "Error: #{bulk_discount.errors.full_messages}"
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @bulk_discount.update(bulk_discount_params)
+
+    redirect_to merchant_bulk_discount_path(@merchant, @bulk_discount)
   end
 
   def destroy

@@ -1,5 +1,23 @@
-<h1>Id: <%= @bulk_discount.id %></h1>
+<div class="nav-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <p class="navbar-text">Bulk Discount: <%= @bulk_discount.id %></p>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Dashboard', merchant_dashboard_index_path, style: 'pull-right' %>
+      <%= link_to 'My Items', merchant_items_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Discounts', merchant_bulk_discounts_path(@merchant), style: 'pull-right' %></li>
+    </ul>
+  </nav>
+</div>
 
-<%= "Discount: #{@bulk_discount.discount}%" %>
-<%= "Threshold: #{@bulk_discount.threshold} Items" %>
-<%= link_to "Edit", edit_merchant_bulk_discount_path(@merchant, @bulk_discount) %>
+<body>
+  <div class="row">
+    <p class='col-12'>Bulk Discount</p>
+  </div>
+
+  <h1>Id: <%= @bulk_discount.id %></h1>
+
+  <%= "Discount: #{@bulk_discount.discount}%" %>
+  <%= "Threshold: #{@bulk_discount.threshold} Items" %>
+  <%= link_to "Edit", edit_merchant_bulk_discount_path(@merchant, @bulk_discount) %>
+</body>

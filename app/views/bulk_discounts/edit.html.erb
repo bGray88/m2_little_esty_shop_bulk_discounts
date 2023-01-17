@@ -1,9 +1,26 @@
-<h1>Edit Bulk Discount</h1>
+<div class='nav-container'>
+  <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+    <p class='navbar-text'>Merchant Bulk Discount</p>
+    <ul class='nav navbar-nav'>
+      <li><%= link_to 'Home', root_path, style: 'pull-right' %>
+      <%= link_to 'Dashboard', merchant_dashboard_index_path, style: 'pull-right' %>
+      <%= link_to 'My Items', merchant_items_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Discounts', merchant_bulk_discounts_path(@merchant), style: 'pull-right' %></li>
+    </ul>
+  </nav>
+</div>
 
-<%= form_with url: merchant_bulk_discount_path(@merchant, @bulk_discount), method: :patch, local: true do |f| %>
-  <%= f.label :discount %>
-  <%= f.text_field :discount, value: @bulk_discount.discount %>
-  <%= f.label :threshold %>
-  <%= f.text_field :threshold, value: @bulk_discount.threshold %>
-  <%= f.submit "Update Bulk Discount" %>
-<% end %>
+<body>
+  <div class='row'>
+    <p class='col-12'>Update Bulk Discount <%= @bulk_discount.id %></p>
+  </div>
+ 
+  <%= form_with url: merchant_bulk_discount_path(@merchant, @bulk_discount), method: :patch, local: true do |f| %>
+    <%= f.label :discount %>
+    <%= f.text_field :discount, value: @bulk_discount.discount %>
+    <%= f.label :threshold %>
+    <%= f.text_field :threshold, value: @bulk_discount.threshold %>
+    <%= f.submit "Update Bulk Discount" %>
+  <% end %>
+</body>

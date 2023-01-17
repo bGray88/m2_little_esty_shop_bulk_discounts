@@ -1,10 +1,17 @@
-<div class="nav-container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <p class="navbar-text">Merchants Dashboard Index</p>
+<div class='nav-container'>
+  <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+    <p class='navbar-text'>Merchant Index</p>
+    <ul class='nav navbar-nav'>
+      <li><%= link_to 'Home', root_path, style: 'pull-right' %></li>
+    </ul>
   </nav>
 </div>
 
 <body>
+  <div class='row'>
+    <p class='col-12'>Merchants</p>
+  </div>
+
   <% @merchants.each do |merchant| %>
     <ul>
       <li><%= link_to merchant.name, merchant_dashboard_index_path(merchant) %></li>

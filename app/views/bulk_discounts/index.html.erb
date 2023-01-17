@@ -9,7 +9,7 @@
       <%= link_to "#{discount.id}", merchant_bulk_discount_path(@merchant, discount) %>
       <%= "Discount: #{discount.discount}%" %>
       <%= "Threshold: #{discount.threshold} Items" %>
-      <%= link_to "Delete", merchant_bulk_discount_path(@merchant, discount), method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to "Delete", merchant_bulk_discount_path(@merchant, discount), method: :delete %>
     </div>
   <% end %>
 <% end %>

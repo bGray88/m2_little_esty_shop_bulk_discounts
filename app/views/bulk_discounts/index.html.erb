@@ -1,24 +1,40 @@
-<h1><%= @merchant.name %> Discounts</h1>
+<div class="nav-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <p class="navbar-text"><%= @merchant.name %></p>
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Dashboard', merchant_dashboard_index_path, style: 'pull-right' %>
+      <%= link_to 'My Items', merchant_items_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Invoices', merchant_invoices_path(@merchant), style: 'pull-right' %>
+      <%= link_to 'My Discounts', merchant_bulk_discounts_path(@merchant), style: 'pull-right' %></li>
+    </ul>
+  </nav>
+</div>
 
 <%= link_to "Create Bulk Discount", new_merchant_bulk_discount_path %>
 
-<% if @bulk_discounts.any? %>
-  <% @bulk_discounts.each do |discount| %>
-    <div id=<%= "merchant-discount-#{discount.id}" %> >
-      <%= label "#{discount.id}", "Id:" %>
-      <%= link_to "#{discount.id}", merchant_bulk_discount_path(@merchant, discount) %>
-      <%= "Discount: #{discount.discount}%" %>
-      <%= "Threshold: #{discount.threshold} Items" %>
-      <%= link_to "Delete", merchant_bulk_discount_path(@merchant, discount), method: :delete %>
-    </div>
-  <% end %>
-<% end %>
+<body>
+  <div class="row">
+    <p class='col-12'>My Discounts</p>
+  </div>
 
-<div id="next-3-holidays" >
-  <h2>Next Three Holidays</h2>
-  <% Api::Date::DateService.date_api_holidays.each do |holiday| %>
-    <ul>
-      <li><%= "#{holiday[:name]}: #{holiday[:date]}" %></li>
-    </ul>
+  <% if @bulk_discounts.any? %>
+    <% @bulk_discounts.each do |discount| %>
+      <div id=<%= "merchant-discount-#{discount.id}" %> >
+        <%= label "#{discount.id}", "Id:" %>
+        <%= link_to "#{discount.id}", merchant_bulk_discount_path(@merchant, discount) %>
+        <%= "Discount: #{discount.discount}%" %>
+        <%= "Threshold: #{discount.threshold} Items" %>
+        <%= link_to "Delete", merchant_bulk_discount_path(@merchant, discount), method: :delete %>
+      </div>
+    <% end %>
   <% end %>
-</div>
+
+  <div id="next-3-holidays" >
+    <h2>Next Three Holidays</h2>
+    <% Api::Date::DateService.date_api_holidays.each do |holiday| %>
+      <ul>
+        <li><%= "#{holiday[:name]}: #{holiday[:date]}" %></li>
+      </ul>
+    <% end %>
+  </div>
+</body>

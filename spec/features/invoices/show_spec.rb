@@ -4,6 +4,7 @@ RSpec.describe 'invoices show' do
   before :each do
     @merchant1 = Merchant.create!(name: 'Hair Care')
     @merchant2 = Merchant.create!(name: 'Jewelry')
+    @merchant3 = Merchant.create!(name: 'Jewelry')
 
     @item_1 = Item.create!(name: "Shampoo", description: "This washes your hair", unit_price: 10, merchant_id: @merchant1.id, status: 1)
     @item_2 = Item.create!(name: "Conditioner", description: "This makes your hair shiny", unit_price: 8, merchant_id: @merchant1.id)
@@ -52,6 +53,12 @@ RSpec.describe 'invoices show' do
     @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_7.id)
     @transaction8 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_8.id)
 
+    @bulk_discount_1 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_2 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_3 = create(:bulk_discount, merchant: @merchant1)
+    @bulk_discount_4 = create(:bulk_discount, merchant: @merchant2)
+    @bulk_discount_5 = create(:bulk_discount, merchant: @merchant2)
+    
     visit merchant_invoice_path(@merchant1, @invoice_1)
   end
 

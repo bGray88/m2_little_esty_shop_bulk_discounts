@@ -9,6 +9,10 @@ class InvoicesController < ApplicationController
   def show
     @customer = @invoice.customer
     @invoice_item = InvoiceItem.where(invoice_id: params[:id]).first
+
+    @invoice.invoice_items.each do |invoice_item|
+      invoice_item.update_discount(invoice_item.applicable_discount)
+    end
   end
 
   def update

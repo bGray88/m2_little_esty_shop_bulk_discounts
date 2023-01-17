@@ -117,6 +117,17 @@ RSpec.describe 'merchant discount index' do
           expect(page).to_not have_content("Id: #{@bulk_discount_1.id}")
         end
       end
+
+      describe 'section with a header of "Upcoming Holidays"' do
+        it 'lists name and date of the next 3 upcoming US holidays' do
+          within("#next-3-holidays") do
+            expect(page).to have_content("Next Three Holidays")
+            expect(page).to have_content("Washington's Birthday: 2023-02-20")
+            expect(page).to have_content("Good Friday: 2023-04-07")
+            expect(page).to have_content("Memorial Day: 2023-05-29")
+          end
+        end
+      end
     end
   end
 end

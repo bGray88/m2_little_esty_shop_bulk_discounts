@@ -13,3 +13,12 @@
     </div>
   <% end %>
 <% end %>
+
+<div id="next-3-holidays" >
+  <h2>Next Three Holidays</h2>
+  <% Api::Date::DateService.date_api_holidays.each do |holiday| %>
+    <ul>
+      <li><%= "#{holiday[:name]}: #{holiday[:date]}" %></li>
+    </ul>
+  <% end %>
+</div>
